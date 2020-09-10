@@ -14,7 +14,7 @@ inputs:
   post-review:
     description: 'Post review after check'
     required: false
-    default: false
+    default: 'false'
 runs:
   using: 'docker'
   image: 'docker://theparticles/verify-pr-label-action'
