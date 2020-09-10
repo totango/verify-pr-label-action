@@ -40,12 +40,14 @@ valid_labels=sys.argv[2]
 
 # Post Review
 post_review=sys.argv[3]
+
+
 print(f'Valid labels are: {valid_labels}')
 
 # Get needed values from the environmental variables
 repo_name=get_env_var('GITHUB_REPOSITORY')
 github_ref=get_env_var('GITHUB_REF')
-
+github_sha=get_env_var('GITHUB_SHA')
 # Create a repository object, using the GitHub token
 repo = Github(token).get_repo(repo_name)
 
@@ -82,12 +84,24 @@ for label in pr_labels:
 if len(pr_valid_labels):
     # If there were valid labels, then create a pull request request review, approving it
     print(f'Success! This pull request contains the following valid labels: {pr_valid_labels}')
+    repo.get_commit(sha=github_sha).create_status(
+        state="success",
+        target_url="https://amazon.com",
+        description="This pull request contains the following valid labels",
+        context="ci/FooCI"
+    )
     if post_review:
         pr.create_review(body = 'This pull request contains a valid label.',
                      event = 'APPROVE')
 else:
     # If there were not valid labels, then create a pull request review, requesting changes
     print(f'Error! This pull request does not contain any of the valid labels: {valid_labels}')
+    repo.get_commit(sha=github_sha).create_status(
+        state="failure",
+        target_url="https://amazon.com",
+        description="This pull request does not contain any of the valid labels",
+        context="ci/FooCI"
+    )
     if post_review:
         pr.create_review(body = 'This pull request does not contain a valid label. '
                             f'Please add one of the following labels: `{valid_labels}`',
