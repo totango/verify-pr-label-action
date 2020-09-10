@@ -90,7 +90,7 @@ if len(pr_valid_labels):
         description="This pull request contains the following valid labels",
         context="ci/FooCI"
     )
-    if post_review:
+    if post_review == "true":
         pr.create_review(body = 'This pull request contains a valid label.',
                      event = 'APPROVE')
 else:
@@ -102,7 +102,7 @@ else:
         description="This pull request does not contain any of the valid labels",
         context="ci/FooCI"
     )
-    if post_review:
+    if post_review == "false":
         pr.create_review(body = 'This pull request does not contain a valid label. '
                             f'Please add one of the following labels: `{valid_labels}`',
                      event = 'REQUEST_CHANGES')
