@@ -41,6 +41,12 @@ valid_labels=sys.argv[2]
 # Post Review
 post_review=sys.argv[3]
 
+#Post custom comment
+try:
+    post_comment=sys.argv[4]
+except IndexError:
+    post_comment=f"This pull request does not contain a valid label. Please add one of the following labels: `{valid_labels}`"
+
 
 print(f'Valid labels are: {valid_labels}')
 
@@ -104,5 +110,5 @@ else:
     )
     if post_review == "true":
         pr.create_review(body = 'This pull request does not contain a valid label. '
-                            f'Please add one of the following labels: `{valid_labels}`',
+                            f'{post_comment}',
                      event = 'REQUEST_CHANGES')
