@@ -15,6 +15,10 @@ inputs:
     description: 'Post review after check'
     required: false
     default: 'false'
+  post-comment:
+    description: 'Post a custom comment after check fails'
+    required: false
+    default: 'false'
 runs:
   using: 'docker'
   image: 'docker://theparticles/verify-pr-label-action'
