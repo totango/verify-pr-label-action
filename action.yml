@@ -26,3 +26,4 @@ runs:
     - ${{ inputs.github-token }}
     - ${{ inputs.valid-labels }}
     - ${{ inputs.post-review }}
+    - ${{ inputs.post-comment }}
