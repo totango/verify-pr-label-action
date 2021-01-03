@@ -31,7 +31,7 @@ def get_env_var(env_var_name, echo_value=False):
 # Check if the number of input arguments is correct
 print(sys.argv)
 print("DDDDD")
-if len(sys.argv) !>= 3:
+if len(sys.argv) < 3:
     print(sys.argv)
     raise ValueError('Invalid number of arguments!')
 
