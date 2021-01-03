@@ -27,6 +27,10 @@ Instead, consider the same example, the action is triggered by `pull_request`'s 
 
 **Non-Required** Post approve review after checking valid labels
 
+### `post-comment`
+
+**Non-Required** Comment to post in PR after checking valid labels fails.
+
 
 ## Example usage
 
@@ -45,12 +49,13 @@ with:
     github-token: '${{ secrets.GITHUB_TOKEN }}'
     valid-labels: 'bug, enhancement'
     post-review: true
-```
+    post-comment: "example comment on failure"
+    ```
 
 
 and trigger it with:
 ```yaml
 on:
   pull_request:
-   types: [opened, labeled, unlabeled, synchronize]
+   types: [labeled, unlabeled]
 ```
