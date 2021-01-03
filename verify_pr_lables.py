@@ -29,7 +29,7 @@ def get_env_var(env_var_name, echo_value=False):
     return value
 
 # Check if the number of input arguments is correct
-if len(sys.argv) != 3 and len(sys.argv) != 4:
+if len(sys.argv) != 3 and len(sys.argv) != 4 and len(sys.argv) != 5:
     raise ValueError('Invalid number of arguments!')
 
 # Get the GitHub token
@@ -40,6 +40,10 @@ valid_labels=sys.argv[2]
 
 # Post Review
 post_review=sys.argv[3]
+
+#Post custom comment
+default_comment=f"This pull request does not contain a valid label. Please add one of the following labels: `{valid_labels}`"
+post_comment=sys.argv[4] if sys.argv[4] != 'false' else default_comment
 
 
 print(f'Valid labels are: {valid_labels}')
@@ -104,5 +108,5 @@ else:
     )
     if post_review == "true":
         pr.create_review(body = 'This pull request does not contain a valid label. '
-                            f'Please add one of the following labels: `{valid_labels}`',
+                            f'{post_comment}',
                      event = 'REQUEST_CHANGES')
