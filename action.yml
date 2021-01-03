@@ -21,7 +21,7 @@ inputs:
     default: 'false'
 runs:
   using: 'docker'
-  image: 'docker://theparticles/verify-pr-label-action'
+  image: 'docker://alonm-totango/verify-pr-label-action'
   args:
     - ${{ inputs.github-token }}
     - ${{ inputs.valid-labels }}
