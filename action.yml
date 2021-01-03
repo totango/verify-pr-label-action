@@ -1,5 +1,5 @@
 name: 'Verify PR Labels'
-author: 'Aios Dave'
+author: 'Alon Makovsky'
 description: 'Verify that the PR has a valid label'
 branding:
   icon: 'check'
