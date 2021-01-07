@@ -96,8 +96,7 @@ if len(pr_valid_labels):
         context="ci/FooCI"
     )
     if post_review == "true":
-        pr.create_review(body = 'This pull request contains a valid label.',
-                     event = 'APPROVE')
+        pr.create_review(event = 'APPROVE')
 else:
     # If there were not valid labels, then create a pull request review, requesting changes
     print(f'Error! This pull request does not contain any of the valid labels: {valid_labels}')
