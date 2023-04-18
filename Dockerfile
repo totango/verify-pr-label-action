@@ -1,4 +1,4 @@
-FROM python:3.6.10-alpine3.10
+FROM python:3.6
 
 RUN pip3 install pygithub==1.56
 
